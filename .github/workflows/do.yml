@@ -10,4 +10,9 @@ jobs:
 
     steps:
       - name: simple-web
-        run: echo "This is the first cicd step"
+        run: |
+          pwd
+          ls -al
+          echo "This is the first cicd step" >> a.txt
+          ls -al
+          cat a.txt
