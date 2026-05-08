@@ -20,7 +20,7 @@ jobs:
           cat a.txt
       - name: simple-web-3
         run: |
-          echo $GITHUB_SECRET
+          echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
 
   secret-variables-check-job:
