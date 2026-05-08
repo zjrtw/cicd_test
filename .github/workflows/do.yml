@@ -20,5 +20,4 @@ jobs:
           cat a.txt
       - name: simple-web-3
         run: |
-          cd ..
-          ls -al
+          find . -name "index.html"
