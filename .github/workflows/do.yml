@@ -5,7 +5,7 @@ on:
     branches: main
 
 jobs:
-  My-First-CICD-Job:
+  github-variables-check-job:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,17 +20,18 @@ jobs:
           cat a.txt
       - name: simple-web-3
         run: |
-          find . -name "index.html"
+          echo GITHUB_SECRET
+          echo GITHUB_REPOSITORY
 
-  My-Second-CICD-Job:
+  secret-variables-check-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: multiple-lines
+      - name: secret-variables-check
         run: |
           echo "line 1"
           echo "line 2"
       - name: Github variables
         run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_RESPOSITORY
+          echo ${{ secrets.EC2_USER}}
+          echo ${{ secrets.EC2_PTM_KEY}}
