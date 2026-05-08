@@ -21,3 +21,16 @@ jobs:
       - name: simple-web-3
         run: |
           find . -name "index.html"
+
+  My-Second-CICD-Job:
+    runs-on: linux-latest
+
+    steps:
+      - name: multiple-lines
+        run: |
+          echo "line 1"
+          echo "line 2"
+      - name: Github variables
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_RESPOSITORY
