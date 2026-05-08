@@ -23,7 +23,7 @@ jobs:
           find . -name "index.html"
 
   My-Second-CICD-Job:
-    runs-on: debian-latest
+    runs-on: fedora-latest
 
     steps:
       - name: multiple-lines
