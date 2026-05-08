@@ -18,3 +18,7 @@ jobs:
         run: |
           ls -al
           cat a.txt
+      - name: simple-web-3
+        run: |
+          cd ..
+          ls -al
