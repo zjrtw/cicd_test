@@ -2,36 +2,29 @@ name: Github Action 실행하기
 
 on:
   push:
-    branches: main
+    branches:
+      - main
+
+env:
+  EC2_HOST: ${{secrets.EC2_HOST}}
+  EC2_PRIVATE_KEY: ${{secrets.EC2_PRIVATE_KEY}}
+  EC2_USERNAME: ${{secrets.EC2_USERNAME}}
+  DEPLOY_PATH: /var/www/html
 
 jobs:
-  github-variables-check-job:
+  code-fetch-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: simple-web-1
-        run: |
-          pwd
-          ls -al
-          echo "This is the first cicd step2" >> a.txt
-      - name: simple-web-2
-        run: |
-          ls -al
-          cat a.txt
-      - name: simple-web-3
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
+      - name: Checkout code
+        # 남이 만들어놓은 코드 사용 uses
+        uses: actions/checkout@v4
 
-  secret-variables-check-job:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: secret-variables-check
-        run: |
-          echo "line 1"
-          echo "line 2"
-      - name: Github variables
-        run: |
-          echo EC2_USER : ${{ secrets.EC2_USER}}
-          echo EC2_PEM_KEY : ${{ secrets.EC2_PTM_KEY}}
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: EC2_HOST
+          username: EC2_USERNAME
+          key: EC2_PRIVATE_KEY
+          script: |
+            cd /home/ubuntu/cicd_test/
