@@ -9,10 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: simple-web
+      - name: simple-web-1
         run: |
           pwd
           ls -al
-          echo "This is the first cicd step" >> a.txt
+          echo "This is the first cicd step2" >> a.txt
+      - name: simple-web-2
+        run: |
           ls -al
           cat a.txt
